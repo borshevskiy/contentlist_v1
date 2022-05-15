@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">contentlist_v1</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="do_you_like_this_article">Do you like this article?</string>
+    <string name="rate_the_article">Rate the article</string>
+</resources>
