@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import com.template.databinding.FragmentMainMenuBinding
 
@@ -23,11 +24,14 @@ class MainMenuFragment : Fragment() {
     ): View {
         _binding = FragmentMainMenuBinding.inflate(layoutInflater, container, false)
         val assets = requireActivity().assets.list(HTML)
+        val animNext = AnimationUtils.loadAnimation(context, R.anim.from_left)
+        val animBack = AnimationUtils.loadAnimation(context, R.anim.from_right)
         preferences = requireActivity().getSharedPreferences("Rating_stars", MODE_PRIVATE)
         if (assets?.isNotEmpty()!!) {
             with(binding) {
                 webView.loadUrl(ASSETS + assets[counter])
                 next.setOnClickListener {
+                    webView.startAnimation(animNext)
                     if (counter < assets.size - 1) {
                         counter++
                         webView.loadUrl(ASSETS + assets[counter])
@@ -36,6 +40,7 @@ class MainMenuFragment : Fragment() {
                     }
                 }
                 back.setOnClickListener {
+                    webView.startAnimation(animBack)
                     if (counter > 0) {
                         counter--
                         webView.loadUrl(ASSETS + assets[counter])
